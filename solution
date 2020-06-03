@@ -1,0 +1,55 @@
+
+
+*****************************************
+PICKUP being OC Probability: 0.01 
+OC Compensation: 0
+*****************************************
+1 (A)
+Mean total cost:  (2319.1420245904087, 2325.327775409591)
+1 (B)
+Mean  confidence interval of max locker capacity:  (95.77738171957446, 97.39041828042554)
+Maximum locker capacity in all simulations:  247
+
+
+*****************************************
+PICKUP being OC Probability: 0.25 
+OC Compensation: 0.5
+*****************************************
+1 (A)
+Mean total cost:  (1794.557100067162, 1799.2114999328378)
+1 (B)
+Mean  confidence interval of max locker capacity:  (91.0211225283673, 92.62927747163269)
+Maximum locker capacity in all simulations:  267
+
+
+*****************************************
+PICKUP being OC Probability: 0.5 
+OC Compensation: 1
+*****************************************
+1 (A)
+Mean total cost:  (1798.5366562178165, 1802.3815437821836)
+1 (B)
+Mean  confidence interval of max locker capacity:  (86.2716326401055, 87.87156735989451)
+Maximum locker capacity in all simulations:  263
+
+
+*****************************************
+PICKUP being OC Probability: 0.6 
+OC Compensation: 1.5
+*****************************************
+1 (A)
+Mean total cost:  (2289.335332140419, 2293.880467859581)
+1 (B)
+Mean  confidence interval of max locker capacity:  (84.50275029328941, 86.08544970671059)
+Maximum locker capacity in all simulations:  274
+
+
+*****************************************
+PICKUP being OC Probability: 0.75 
+OC Compensation: 1.8
+*****************************************
+1 (A)
+Mean total cost:  (2800.27115748757, 2805.793602512433)
+1 (B)
+Mean  confidence interval of max locker capacity:  (82.24648122752298, 83.83711877247701)
+Maximum locker capacity in all simulations:  261

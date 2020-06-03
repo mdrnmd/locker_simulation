@@ -1,0 +1,6 @@
+chmod 755 start.sh
+./start.sh
+
+ 
+It will write solution to solution file and full observation tables to full_observations
+full_observations file can be up to 800MB
