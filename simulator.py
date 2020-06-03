@@ -221,14 +221,15 @@ if __name__ == "__main__":
 		#print("\nMean confidence interval of total OC compesantion: " ,mean_confidence_interval(results_expected_reward_total,alpha),  file=open("solution", "a"))
 		#print("Mean confidence interval of total PAID FLEET cost: " ,mean_confidence_interval(results_expected_pf_total,alpha),  file=open("solution", "a"))
 		print("Mean total cost: " ,mean_confidence_interval(results_total_cost,alpha),  file=open("solution", "a"))
-		print("Max total cost: " ,max(results_total_cost)) #,  file=open("solution", "a"))
+		#print("Max total cost: " ,max(results_total_cost)) #,  file=open("solution", "a"))
 
 		print ("1 (B)",  file=open("solution", "a"))
+		#print("\nMean confidence interval of packages handled: " , mean_confidence_interval(results_total_packages,alpha),  file=open("solution", "a"))
 		print("Mean  confidence interval of max locker capacity: " ,mean_confidence_interval(results_max_locker,alpha),  file=open("solution", "a"))
-		print("Maximum locker capacity in all simulations: " , max(results_max_locker),  file=open("solution", "a"))
+		#print("Maximum locker capacity in all simulations: " , max(results_max_locker),  file=open("solution", "a"))
 
 		#print ("\n\nOTHER IMPORTANT DATA",  file=open("solution", "a"))
-		#print("\nMean confidence interval of packages handled: " , mean_confidence_interval(results_total_packages,alpha),  file=open("solution", "a"))
+		
 		#print("\nMax total OC compesantion: " ,max(results_expected_reward_total),  file=open("solution", "a"))
 		#print("Min total OC compesantion: " ,min(results_expected_reward_total),  file=open("solution", "a"))
 		#print("\nMax total PAID FLEET cost: " ,max(results_expected_pf_total),  file=open("solution", "a"))
