@@ -11,7 +11,7 @@ def day_analysis(time, arr_total ,arr_home, arr_pickup, deliveries_paid, deliver
 	print("\n\nDAY   |  NEW PACKAGES (10-50) |       DELIVERIES       | ACCUMULATED DELIVERIES |           COSTS            | LOCKER STATUS         |")
 	print(" t    |  total   home   lckr  |   pf      oc     lckr  |   pf      oc     lckr  |  pf           oc       ACC |  home    lckr   total |")
 	print("----- | --------------------- | ---------------------- | ---------------------- | -------------------------- | --------------------- |")
-	for i in range(0, time+1):
+	for i in range(1, time+1):
 		acc_pf = acc_pf + deliveries_paid[i]
 		acc_oc = acc_oc + deliveries_oc[i]
 		acc_lckr = acc_lckr + deliveries_pickup[i]
@@ -77,6 +77,7 @@ def simulate(time, pickup_rate,oc_probability, oc_reward):
 	locker = []
 	home = []
 	pickup = []
+
 	# deliviries list
 	del_oc = []	
 	del_paid = []
@@ -102,35 +103,40 @@ def simulate(time, pickup_rate,oc_probability, oc_reward):
 	# Contador total_packages é responsavel por contar quantas encomendas passam pela loja.
 	total_packages = 0
 
+
 	#simulation starts
-	for i in range(1,time+1):
+	i = 1
+	pickup[i] = pickup[i-1] + pickup[i]
+	home[i] = home[i-1] + home[i]
+	locker[i] = locker[i-1] + locker[i]
+
+	# +++ ARRIVAL of PACKAGES +++
+	# é gerado um numero aleatorio de encomendas a chegar
+	epa = estimated_package_arrivals()
+	total_packages = total_packages + epa
+	locker[i] = locker[i] + epa
+	arr_total[i] = epa
+	# por cada encomenda j é randomizada a probabilidade 
+	# de ser home or pickup conforme o enunciado.
+	pickups_day=0
+	home_day=0
+	for j in range(0,epa):
+		if prob_pickup_or_home():
+			home_day = home_day + 1
+		else: pickups_day = pickups_day + 1
+
+	arr_pickup[i] = pickups_day
+	arr_home[i] = home_day
+	home[i] = home[i] + home_day
+	pickup[i] = pickup[i] + pickups_day
+
+	for i in range(2,time+1):
 		# Dia começa por assumir as encomendas no fechar da loja para o dia seguinte.
-		# Apos isso, chegam as encomendas aleatorias
+
 		pickup[i] = pickup[i-1] + pickup[i]
 		home[i] = home[i-1] + home[i]
 		locker[i] = locker[i-1] + locker[i]
-
-		# +++ ARRIVAL of PACKAGES +++
-		# é gerado um numero aleatorio de encomendas a chegar
-		epa = estimated_package_arrivals()
-		total_packages = total_packages + epa
-		locker[i] = locker[i] + epa
-		arr_total[i] = epa
-		# por cada encomenda j é randomizada a probabilidade 
-		# de ser home or pickup conforme o enunciado.
-		pickups_day=0
-		home_day=0
-		for j in range(0,epa):
-			if prob_pickup_or_home():
-				home_day = home_day + 1
-			else: pickups_day = pickups_day + 1
-
-		arr_pickup[i] = home_day
-		arr_home[i] = pickups_day
-		home[i] = home[i] + home_day
-		pickup[i] = pickup[i] + pickups_day
 		
-		# Neste momento, numero max de encomendas atingidas no dia. 
 		# A partir de aqui, as encomendas comecam a ser entregues.
 
 		# --- DEPARTURES --- #
@@ -160,7 +166,33 @@ def simulate(time, pickup_rate,oc_probability, oc_reward):
 						del_paid[i+1] = del_paid[i+1] + 1
 						locker[i+1] = locker[i+1] - 1
 
+		# encomendas que nao foram entregues por OC, são entregues no dia seguinte.
+		del_paid[i+1] = home[i]
+		home[i+1] = -1 * home[i]
+		locker[i+1] = -1 * home[i]
+
+		# +++ ARRIVAL of PACKAGES +++
+		# é gerado um numero aleatorio de encomendas a chegar
+		# Apos isso, chegam as encomendas aleatorias
+		epa = estimated_package_arrivals()
+		total_packages = total_packages + epa
+		locker[i] = locker[i] + epa
+		arr_total[i] = epa
+		# por cada encomenda j é randomizada a probabilidade 
+		# de ser home or pickup conforme o enunciado.
+		pickups_day=0
+		home_day=0
+		for j in range(0,epa):
+			if prob_pickup_or_home():
+				home_day = home_day + 1
+			else: pickups_day = pickups_day + 1
+
+		arr_pickup[i] = pickups_day
+		arr_home[i] = home_day
+		home[i] = home[i] + home_day
+		pickup[i] = pickup[i] + pickups_day
 		# DIA Termina apos todas as probabilidades de pickup serem calculadas
+
 	
 	
 	day_analysis(i,arr_total, arr_home, arr_pickup, del_paid, del_oc, del_pickup, locker, home, pickup, oc_reward)
@@ -189,7 +221,7 @@ def mean_confidence_interval(data,alpha):
 if __name__ == "__main__":
 	time = 120
 	pickup_prob = .75
-	oc_probab = [.01, .25, .5, .6,  .75]
+	oc_probab = [.01, .25, .5, .6, .75]
 	oc_cost = [0, 0.5, 1, 1.5, 1.8]
 
 	confidence = .99
@@ -217,15 +249,13 @@ if __name__ == "__main__":
 		print("PICKUP being OC Probability:" , oc_probab[k],"\nOC Compensation:" ,oc_cost[k],  file=open("solution", "a"))
 
 		print("*****************************************",  file=open("solution", "a"))
-		print ("1 (A)",  file=open("solution", "a"))
 		#print("\nMean confidence interval of total OC compesantion: " ,mean_confidence_interval(results_expected_reward_total,alpha),  file=open("solution", "a"))
 		#print("Mean confidence interval of total PAID FLEET cost: " ,mean_confidence_interval(results_expected_pf_total,alpha),  file=open("solution", "a"))
-		print("Mean total cost: " ,mean_confidence_interval(results_total_cost,alpha),  file=open("solution", "a"))
+		print("1 (A) - Mean total cost: " ,mean_confidence_interval(results_total_cost,alpha),  file=open("solution", "a"))
 		#print("Max total cost: " ,max(results_total_cost)) #,  file=open("solution", "a"))
 
-		print ("1 (B)",  file=open("solution", "a"))
 		#print("\nMean confidence interval of packages handled: " , mean_confidence_interval(results_total_packages,alpha),  file=open("solution", "a"))
-		print("Mean  confidence interval of max locker capacity: " ,mean_confidence_interval(results_max_locker,alpha),  file=open("solution", "a"))
+		print("1 (B) - Mean  confidence interval of max locker capacity: " ,mean_confidence_interval(results_max_locker,alpha),  file=open("solution", "a"))
 		#print("Maximum locker capacity in all simulations: " , max(results_max_locker),  file=open("solution", "a"))
 
 		#print ("\n\nOTHER IMPORTANT DATA",  file=open("solution", "a"))

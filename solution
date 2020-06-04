@@ -4,47 +4,37 @@
 PICKUP being OC Probability: 0.01 
 OC Compensation: 0
 *****************************************
-1 (A)
-Mean total cost:  (2318.3664293285487, 2324.5159706714517)
-1 (B)
-Mean  confidence interval of max locker capacity:  (95.3293021111725, 96.9272978888275)
+1 (A) - Mean total cost:  (2417.692045382964, 2424.282354617036)
+1 (B) - Mean  confidence interval of max locker capacity:  (81.61775545291641, 81.78124454708359)
 
 
 *****************************************
 PICKUP being OC Probability: 0.25 
 OC Compensation: 0.5
 *****************************************
-1 (A)
-Mean total cost:  (1795.9765046050543, 1800.6524953949456)
-1 (B)
-Mean  confidence interval of max locker capacity:  (91.30146126105963, 92.88553873894038)
+1 (A) - Mean total cost:  (1964.9770346072785, 1970.4436653927216)
+1 (B) - Mean  confidence interval of max locker capacity:  (77.92900746543708, 78.10439253456292)
 
 
 *****************************************
 PICKUP being OC Probability: 0.5 
 OC Compensation: 1
 *****************************************
-1 (A)
-Mean total cost:  (1799.24709177219, 1803.0723082278098)
-1 (B)
-Mean  confidence interval of max locker capacity:  (86.56812072530559, 88.16307927469441)
+1 (A) - Mean total cost:  (1937.4975315695262, 1942.1970684304736)
+1 (B) - Mean  confidence interval of max locker capacity:  (74.1217728768581, 74.3074271231419)
 
 
 *****************************************
 PICKUP being OC Probability: 0.6 
 OC Compensation: 1.5
 *****************************************
-1 (A)
-Mean total cost:  (2290.955759460904, 2295.4069405390956)
-1 (B)
-Mean  confidence interval of max locker capacity:  (84.23688747281527, 85.80411252718473)
+1 (A) - Mean total cost:  (2335.789452485491, 2340.9445475145094)
+1 (B) - Mean  confidence interval of max locker capacity:  (72.51463271467773, 72.70436728532226)
 
 
 *****************************************
 PICKUP being OC Probability: 0.75 
 OC Compensation: 1.8
 *****************************************
-1 (A)
-Mean total cost:  (2800.6433596091524, 2806.1558803908406)
-1 (B)
-Mean  confidence interval of max locker capacity:  (81.58023149179246, 83.15076850820753)
+1 (A) - Mean total cost:  (2738.1689217213043, 2743.849278278707)
+1 (B) - Mean  confidence interval of max locker capacity:  (70.16869812788204, 70.35970187211797)
